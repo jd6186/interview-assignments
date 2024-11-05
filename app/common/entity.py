@@ -52,7 +52,7 @@ class UserDeleteLog(Base):
     __tablename__ = "user_delete_logs"
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, nullable=False)
-    deleted_by = Column(String, nullable=False)
+    login_email = Column(String, nullable=False)
     deleted_at = Column(DateTime, default=datetime.utcnow)
     reason = Column(String, nullable=True)  # 삭제 사유 기록
 
@@ -60,7 +60,7 @@ class UserDeleteLog(Base):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "deleted_by": self.deleted_by,
+            "login_email": self.login_email,
             "deleted_at": self.deleted_at,
             "reason": self.reason
         }

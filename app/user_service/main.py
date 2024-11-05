@@ -81,7 +81,7 @@ def delete_user(reason: str, credentials: HTTPAuthorizationCredentials = Securit
     if not existing_user:
         return ResponseDto.error_response(ErrorType.USER_NOT_FOUND)
     # 삭제 이력 추가
-    db.add(UserDeleteLog(user_id=user_id, deleted_by=user_id, reason=reason))
+    db.add(UserDeleteLog(user_id=user_id, login_email=existing_user.login_email, reason=reason))
     # 사용자 삭제
     db.delete(existing_user)
     db.commit()
