@@ -1,0 +1,18 @@
+# App
+fastapi
+uvicorn
+
+# Security
+PyJWT
+passlib
+bcrypt
+
+# Tests
+pytest
+pytest-mock
+httpx
+coverage
+
+# Database
+psycopg2-binary
+sqlalchemy
