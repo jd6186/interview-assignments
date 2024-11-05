@@ -1,0 +1,66 @@
+version: '3.9'
+services:
+  auth_service:
+    build:
+      context: ./
+      dockerfile: auth-service.Dockerfile
+    container_name: auth_service_container
+    ports:
+      - "8001:8001"
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/appdb
+    depends_on:
+      - db
+
+  user_service:
+    build:
+      context: ./
+      dockerfile: user-service.Dockerfile
+    container_name: user_service_container
+    ports:
+      - "8002:8002"
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/appdb
+      - PYTHONPATH=/app
+    depends_on:
+      - db
+
+  post_service:
+    build:
+      context: ./
+      dockerfile: post-service.Dockerfile
+    container_name: post_service_container
+    ports:
+      - "8003:8003"
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/appdb
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    container_name: db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: appdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  test_db:
+    image: postgres:latest
+    container_name: test_db
+    environment:
+      POSTGRES_USER: testuser
+      POSTGRES_PASSWORD: testpassword
+      POSTGRES_DB: testdb
+    ports:
+      - "5433:5432"
+    volumes:
+      - test_db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+  test_db_data:
