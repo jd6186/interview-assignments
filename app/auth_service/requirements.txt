@@ -1,0 +1,12 @@
+# App
+fastapi
+uvicorn
+
+# Security
+PyJWT
+passlib
+bcrypt
+
+# Database
+psycopg2-binary
+sqlalchemy
