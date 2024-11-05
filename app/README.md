@@ -52,6 +52,8 @@ chmod +x deploy.sh
 ```
 
 ### 1-3. API 명세서(Swagger-UI)
+각 서비스는 아래 API 명세서를 통해 확인 및 테스트할 수 있습니다.
+
 * 회원가입 및 로그인을 위한 백엔드 서비스: http://localhost:8001/docs
 * 이용자 백엔드 서비스: http://localhost:8002/docs
 * 게시판 백엔드 서비스: http://localhost:8003/docs
