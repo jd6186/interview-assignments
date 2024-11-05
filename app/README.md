@@ -1,10 +1,37 @@
 ## 1. 프로젝트 실행 가이드
-### 1-1. 설치 요소
+### 1-1. 설치 요소 설명 및 설치 방법(macOS 기준)
 - **Docker**: 컨테이너 기반 가상화 플랫폼
+    ```shell
+    # Docker 설치 여부 확인
+    docker --version
+  
+    # Docker 설치
+    brew install docker
+  
+    # Docker 실행
+    open /Applications/Docker.app
+    ```
 - **Python(3.9 이상)**: 파이썬 프로그래밍 언어
+    ```shell
+    # Python 설치 및 버전 확인
+    python3 --version
+  
+    # Python 설치
+    brew install python@3.9
+    ```
 - **PostgreSQL**: 오픈소스 객체-관계형 데이터베이스 시스템
+    ```shell
+    # PostgreSQL 설치 여부 확인
+    psql --version
+  
+    # PostgreSQL 설치
+    brew install postgresql
+  
+    # PostgreSQL 실행
+    brew services start postgresql
+    ```
 
-### 1-2. App 실행방법
+### 1-2. App 실행방법(모든 앱은 아래 프로세스로 한번에 실행됩니다)
 Docker를 활성화 시킨 상태에서 아래 코드를 순서대로 실행해주세요.(macOS 기준)
 
 ```bash
@@ -14,13 +41,13 @@ python3 -m venv venv
 # 가상환경 활성화
 source venv/bin/activate
 
-# pip를 이용하여 API 설치
+# pip를 이용하여 가상환경 내 필요한 API 설치
 pip install -r requirements.txt
 
 # 파일에 실행권한 부여
 chmod +x deploy.sh
 
-# 배포 스크립트 실행
+# 배포 스크립트 실행(테스트 성공 시에만 docker-compose로 배포)
 ./deploy.sh
 ```
 
@@ -59,8 +86,8 @@ deploy.sh 스크립트를 실행하면 다음과 같은 시나리오 테스트�
 5. 삭제 후 `GET /users`로 삭제된 유저 조회 시도
 <br/><br/>
 
-## 2. ERD 설계
-### 2-1. ERD 설명
+## 3. ERD 설계
+### 3-1. ERD 설명
 서비스의 데이터베이스 구조는 다음과 같은 주요 테이블로 구성됩니다.
 
 1. **users 테이블**
@@ -100,6 +127,6 @@ deploy.sh 스크립트를 실행하면 다음과 같은 시나리오 테스트�
       - `content`: 게시글 내용
       - `updated_at`: 마지막 수정 시각 (자동으로 현재 시간 설정)
 
-### 2-2. ERD 다이어그램
+### 3-2. ERD 다이어그램
 ![ERD.png](ERD.png)
 <br/><br/>
